@@ -1,0 +1,49 @@
+#!/bin/bash
+#
+# Script para la instalación de las utilidades graficas en Ferb
+# este código instala automaticamente las aplicaciones.
+
+        
+        clear
+        salir=0
+        echo ''
+        log="/var/log/UtilsLog"
+	fecha=$(date)
+        echo '********************************************************************************************'
+        echo '*                                       Bienvenido...                                      *'
+        echo '*      Esta utilidad instalará automaticamente un conjunto de aplicaciones en Ferb         *'
+        echo '*      Este script ha sido licenciado bajo la GNU GPL                                      *'
+        echo '*      Copyright (c) 2012 Carlos J. Castillo N.                                            *'
+        echo '*      Se desarrrolla esperando que sea util y funcional, pero sin ningun tipo de garantia *'
+        echo '********************************************************************************************'
+
+        if [ -a $log ]
+          then
+                echo 'Incializando el registro en LOG, espere un momento'
+                echo 'accesadon al script de instalacion de utilidades Ferb '$fecha >> $log
+                sleep 5
+
+          else
+                echo 'El archivo de Log no se encuentra creado, espero un momento mientras se crea'
+                touch $log
+                echo 'archivo de log creado instalando Ferb ' $date ; 
+                sleep 5
+        fi
+
+
+        clear
+        echo ''
+        echo '====================================================================================='
+        echo '                             Instalación Grafica de Ferb :'
+        echo '====================================================================================='
+        echo ''
+        echo '      1  .- Actualizando la lista de fuentes el sistema:'
+	aptitude update;
+        echo '      2  .- Instalando Actualizaciones'
+	aptitude upgrade;
+        echo '      3  .- Instalando Drivers y Compiz'
+	aptitude install xserver-xorg-video-intel libgl1-mesa-dri libgl1-mesa-glx libglu1-mesa mesa-utils compiz compiz-plugins compiz-fusion-plugins-extra compiz-fusion-plugins-main compiz-fusion-plugins-unsupported conpizconfig-settings-manager fusion-icon
+        echo '      4  .- Proceso Finalizado, Disfrute'
+        echo '====================================================================================='
+	sleep 5;
+	clear;

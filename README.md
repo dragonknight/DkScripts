@@ -1,4 +1,0 @@
-DkScripts
-=========
-
-Repositorios de scripts

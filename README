@@ -1,0 +1,43 @@
+            #############################################################################
+            #                                     DKScripts                             #
+            #                             Scripst multipropositos                       #
+            #############################################################################
+
+
+Copyright (C)  2012  Carlos J. Castillo N.
+Permission is granted to copy, distribute and/or modify this document
+under the terms of the GNU Free Documentation License, Version 3
+or any later version published by the Free Software Foundation;
+with no Invariant Sections, no Front-Cover Texts, and no Back-Cover Texts.
+A copy of the license is included in the section entitled "GNULicense".
+
+Desarrollados por:
+    Carlos J. Castillo N.
+    castilloc185@hotmail.com
+    @Dr4g0nKn1ght
+-------------------------------------------------------------------------------------------------------
+
+Advertencia:
+
+Los Scripts se Desarrollan con el animo de ser utililes ha todos, pero no cuentan con garantia alguna.
+Cada usuario decide correrlos bajo sus propios riesgos y responsabilidades
+
+-------------------------------------------------------------------------------------------------------
+
+                                  Estructura de directorios:
+
++ Scripts:
+|------	+ Debian:
+|	|------	Estable
+|	|------	Testing
+|	|------	Sid
+|	
+|------	+ RHEL:
+|
+|------	+ SiragonML1020:
+|
+|------	+ GNULicense:
+
+                                  Descripción de Archivos:
+
+

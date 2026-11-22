@@ -1,6 +1,6 @@
 # 📱 DkScripts - Termux AI & Dev Setup Recipe
 
-Receta automatizada y modular para configurar un entorno de desarrollo con herramientas de Inteligencia Artificial (**GitHub Copilot CLI**, **Cursor CLI** y **Antigravity CLI**) en **Termux (Android)**, ideal para móviles y tablets.
+Receta automatizada y modular para configurar un entorno de desarrollo con herramientas de Inteligencia Artificial (**GitHub Copilot CLI**, **Cursor CLI** y **Antigravity CLI**) y automatización de infraestructura (**Ansible Engine**) en **Termux (Android)**, ideal para móviles y tablets.
 
 ---
 
@@ -45,7 +45,8 @@ Termux/
     ├── 02_debian_proot.sh   # Configura el contenedor Debian glibc y ca-certificates
     ├── 03_copilot_cli.sh    # Instala GitHub Copilot CLI + wrapper transparente
     ├── 04_cursor_cli.sh     # Instala Cursor CLI (cursor-agent) + wrapper
-    └── 05_antigravity_cli.sh# Instala Google Antigravity CLI (agy)
+    ├── 05_antigravity_cli.sh# Instala Google Antigravity CLI (agy)
+    └── 06_ansible.sh        # Instala Ansible Automation Engine en Debian + wrappers
 ```
 
 ---
@@ -72,6 +73,9 @@ Puedes ejecutar módulos individuales o todo en conjunto:
 
 # Solo Antigravity CLI
 ./setup.sh --agy
+
+# Solo Ansible
+./setup.sh --ansible
 ```
 
 ---
@@ -104,6 +108,15 @@ agent
 ### Google Antigravity CLI
 ```bash
 agy
+```
+
+### Ansible Engine (PRoot)
+```bash
+# Comprobar versión
+ansible --version
+
+# Ejecutar un playbook
+ansible-playbook -i inventario.ini site.yml
 ```
 
 ---

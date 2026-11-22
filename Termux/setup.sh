@@ -55,12 +55,13 @@ usage() {
 Uso: $(basename "$0") [OPCIONES]
 
 Opciones:
-  --all         Ejecutar toda la receta (Base + Debian + Copilot + Cursor + Antigravity)
+  --all         Ejecutar toda la receta (Base + Debian + Copilot + Cursor + Antigravity + Ansible)
   --base        Instalar solo paquetes base de Termux
   --debian      Configurar solo contenedor Debian glibc
   --copilot     Instalar solo GitHub Copilot CLI y su wrapper
   --cursor      Instalar solo Cursor CLI y su wrapper
   --agy         Instalar solo Antigravity CLI
+  --ansible     Instalar solo Ansible Automation Engine y wrappers
   -h, --help    Mostrar este mensaje de ayuda
 
 Ejemplo:
@@ -113,6 +114,9 @@ main() {
         --agy)
             run_step "$SCRIPTS_DIR/05_antigravity_cli.sh" "Antigravity CLI"
             ;;
+        --ansible)
+            run_step "$SCRIPTS_DIR/06_ansible.sh" "Ansible Automation Engine (PRoot)"
+            ;;
         --all)
             log_info "Ejecutando configuración completa..."
             run_step "$SCRIPTS_DIR/01_termux_base.sh" "Paquetes base de Termux"
@@ -120,6 +124,7 @@ main() {
             run_step "$SCRIPTS_DIR/03_copilot_cli.sh" "GitHub Copilot CLI"
             run_step "$SCRIPTS_DIR/04_cursor_cli.sh" "Cursor CLI"
             run_step "$SCRIPTS_DIR/05_antigravity_cli.sh" "Antigravity CLI"
+            run_step "$SCRIPTS_DIR/06_ansible.sh" "Ansible Automation Engine (PRoot)"
             ;;
         -h|--help)
             usage
@@ -137,6 +142,8 @@ main() {
     echo -e "  - ${GREEN}cursor-agent${RESET}  (Cursor CLI)"
     echo -e "  - ${GREEN}agent${RESET}         (Cursor CLI)"
     echo -e "  - ${GREEN}agy${RESET}           (Google Antigravity CLI)"
+    echo -e "  - ${GREEN}ansible${RESET}       (Ansible CLI sobre Debian PRoot)"
+    echo -e "  - ${GREEN}ansible-playbook${RESET} (Ansible Playbook sobre Debian PRoot)"
     echo ""
     echo -e "${YELLOW}Nota de autenticación:${RESET}"
     echo -e "  - Para iniciar sesión en Copilot: ${BOLD}copilot login --device-code${RESET}"

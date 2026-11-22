@@ -15,11 +15,13 @@ mkdir -p "$COPILOT_DIR" "$PREFIX_BIN" "$HOME/.local/bin"
 # Descargar la versión oficial de Copilot CLI si no existe o se requiere reinstalar
 if [ ! -f "$COPILOT_BIN" ]; then
     echo "--> Descargando Copilot CLI oficial..."
-    curl -fsSL https://gh.io/copilot-install | bash
+    PREFIX="$COPILOT_DIR" curl -fsSL https://gh.io/copilot-install | bash
 
-    # El instalador coloca el binario en $PREFIX_BIN/copilot.
-    # En Termux nativo ese binario falla porque requiere glibc.
-    if [ -f "$PREFIX_BIN/copilot" ] && [ ! -L "$PREFIX_BIN/copilot" ]; then
+    if [ -f "$COPILOT_DIR/bin/copilot" ]; then
+        mv "$COPILOT_DIR/bin/copilot" "$COPILOT_BIN"
+        rm -rf "$COPILOT_DIR/bin"
+        chmod +x "$COPILOT_BIN"
+    elif [ -f "$PREFIX_BIN/copilot" ] && [ ! -L "$PREFIX_BIN/copilot" ]; then
         mv "$PREFIX_BIN/copilot" "$COPILOT_BIN"
         chmod +x "$COPILOT_BIN"
     fi

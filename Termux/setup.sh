@@ -55,13 +55,14 @@ usage() {
 Uso: $(basename "$0") [OPCIONES]
 
 Opciones:
-  --all         Ejecutar toda la receta (Base + Debian + Copilot + Cursor + Antigravity + Ansible)
+  --all         Ejecutar toda la receta (Base + Debian + Copilot + Cursor + Antigravity + Ansible + Almacenamiento/OneDrive)
   --base        Instalar solo paquetes base de Termux
   --debian      Configurar solo contenedor Debian glibc
   --copilot     Instalar solo GitHub Copilot CLI y su wrapper
   --cursor      Instalar solo Cursor CLI y su wrapper
   --agy         Instalar solo Antigravity CLI
   --ansible     Instalar solo Ansible Automation Engine y wrappers
+  --storage     Configurar almacenamiento Android y soporte para OneDrive
   -h, --help    Mostrar este mensaje de ayuda
 
 Ejemplo:
@@ -117,6 +118,9 @@ main() {
         --ansible)
             run_step "$SCRIPTS_DIR/06_ansible.sh" "Ansible Automation Engine (PRoot)"
             ;;
+        --storage)
+            run_step "$SCRIPTS_DIR/07_storage_onedrive.sh" "Almacenamiento Android y OneDrive"
+            ;;
         --all)
             log_info "Ejecutando configuración completa..."
             run_step "$SCRIPTS_DIR/01_termux_base.sh" "Paquetes base de Termux"
@@ -125,6 +129,7 @@ main() {
             run_step "$SCRIPTS_DIR/04_cursor_cli.sh" "Cursor CLI"
             run_step "$SCRIPTS_DIR/05_antigravity_cli.sh" "Antigravity CLI"
             run_step "$SCRIPTS_DIR/06_ansible.sh" "Ansible Automation Engine (PRoot)"
+            run_step "$SCRIPTS_DIR/07_storage_onedrive.sh" "Almacenamiento Android y OneDrive"
             ;;
         -h|--help)
             usage
@@ -144,6 +149,9 @@ main() {
     echo -e "  - ${GREEN}agy${RESET}           (Google Antigravity CLI)"
     echo -e "  - ${GREEN}ansible${RESET}       (Ansible CLI sobre Debian PRoot)"
     echo -e "  - ${GREEN}ansible-playbook${RESET} (Ansible Playbook sobre Debian PRoot)"
+    echo -e "  - ${GREEN}onedrive-sync${RESET}   (Descargar/Sincronizar OneDrive a ~/OneDrive)"
+    echo -e "  - ${GREEN}onedrive-push${RESET}   (Subir cambios de ~/OneDrive a la nube)"
+    echo -e "  - ${GREEN}~/storage/${RESET}      (Almacenamiento Android: Descargas, Documentos, etc.)"
     echo ""
     echo -e "${YELLOW}Nota de autenticación:${RESET}"
     echo -e "  - Para iniciar sesión en Copilot: ${BOLD}copilot login --device-code${RESET}"

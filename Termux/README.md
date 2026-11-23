@@ -46,7 +46,8 @@ Termux/
     ├── 03_copilot_cli.sh    # Instala GitHub Copilot CLI + wrapper transparente
     ├── 04_cursor_cli.sh     # Instala Cursor CLI (cursor-agent) + wrapper
     ├── 05_antigravity_cli.sh# Instala Google Antigravity CLI (agy)
-    └── 06_ansible.sh        # Instala Ansible Automation Engine en Debian + wrappers
+    ├── 06_ansible.sh        # Instala Ansible Automation Engine en Debian + wrappers
+    └── 07_storage_onedrive.sh # Acceso a almacenamiento Android y soporte OneDrive con rclone
 ```
 
 ---
@@ -76,6 +77,9 @@ Puedes ejecutar módulos individuales o todo en conjunto:
 
 # Solo Ansible
 ./setup.sh --ansible
+
+# Solo almacenamiento Android y OneDrive
+./setup.sh --storage
 ```
 
 ---
@@ -118,6 +122,25 @@ ansible --version
 # Ejecutar un playbook
 ansible-playbook -i inventario.ini site.yml
 ```
+
+### 📁 Almacenamiento Android y Microsoft OneDrive
+La receta habilita el acceso a la memoria de tu dispositivo y añade soporte para sincronizar carpetas con **OneDrive**:
+
+* **Acceso local:** Tienes acceso directo a las carpetas de Android en `~/storage`:
+  * `~/storage/downloads`: Carpeta de Descargas de la tablet.
+  * `~/storage/shared`: Raíz del almacenamiento interno (`/storage/emulated/0`).
+
+* **Conectar OneDrive en la nube (rclone):**
+  1. Ejecuta el asistente interactivo:
+     ```bash
+     rclone config
+     ```
+     *(Elige `n` para nuevo remoto, nómbralo `onedrive`, selecciona el tipo `onedrive` y autoriza tu cuenta).*
+  2. Sincroniza tus archivos con un solo comando:
+     ```bash
+     onedrive-sync   # Descarga tu OneDrive a ~/OneDrive
+     onedrive-push   # Sube cambios de ~/OneDrive a la nube
+     ```
 
 ---
 

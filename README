@@ -39,7 +39,7 @@ Cada usuario decide correrlos bajo sus propios riesgos y responsabilidades
 |------	+ Termux:
 |	|------	setup.sh
 |	|------	README.md
-|	|------	scripts: (01_termux_base.sh, 02_debian_proot.sh, 03_copilot_cli.sh, 04_cursor_cli.sh, 05_antigravity_cli.sh, 06_ansible.sh)
+|	|------	scripts: (01_termux_base.sh, 02_debian_proot.sh, 03_copilot_cli.sh, 04_cursor_cli.sh, 05_antigravity_cli.sh, 06_ansible.sh, 07_storage_onedrive.sh)
 |
 |------	+ GNULicense:
 

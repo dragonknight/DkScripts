@@ -28,6 +28,7 @@ REQUIRED_PKGS=(
     nano
     openssl
     which
+    rclone
 )
 
 for pkg_name in "${REQUIRED_PKGS[@]}"; do
@@ -38,6 +39,15 @@ for pkg_name in "${REQUIRED_PKGS[@]}"; do
         echo "--> $pkg_name ya está instalado."
     fi
 done
+
+# Configuración del almacenamiento compartido de Android
+if [ ! -d "$HOME/storage" ] || [ ! -e "$HOME/storage/shared" ]; then
+    echo "--> Solicitando permisos de almacenamiento a Android (termux-setup-storage)..."
+    termux-setup-storage || true
+    echo "--> Si aparece un cuadro de diálogo en Android, presiona 'Permitir'."
+else
+    echo "--> Enlaces de almacenamiento en ~/storage ya configurados."
+fi
 
 # Asegurar directorios de usuario
 mkdir -p "$HOME/.local/bin" "$HOME/.local/share" "$HOME/.config"

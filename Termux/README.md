@@ -138,8 +138,10 @@ La receta habilita el acceso a la memoria de tu dispositivo y añade soporte par
      *(Elige `n` para nuevo remoto, nómbralo `onedrive`, selecciona el tipo `onedrive` y autoriza tu cuenta).*
   2. Sincroniza tus archivos con un solo comando:
      ```bash
-     onedrive-sync   # Descarga tu OneDrive a ~/OneDrive
-     onedrive-push   # Sube cambios de ~/OneDrive a la nube
+     onedrive-ls             # Listar carpetas en tu OneDrive
+     onedrive-sync           # Descarga todo tu OneDrive a ~/OneDrive
+     onedrive-sync Ansible   # Descarga solo una carpeta específica (ej. Ansible)
+     onedrive-push Ansible   # Sube cambios locales de ~/OneDrive/Ansible a la nube
      ```
 
 ---

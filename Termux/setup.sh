@@ -55,7 +55,7 @@ usage() {
 Uso: $(basename "$0") [OPCIONES]
 
 Opciones:
-  --all         Ejecutar toda la receta (Base + Debian + Copilot + Cursor + Antigravity + Ansible + Almacenamiento/OneDrive)
+  --all         Ejecutar toda la receta (Base + Debian + Copilot + Cursor + Antigravity + Ansible + Almacenamiento + Dev CLIs)
   --base        Instalar solo paquetes base de Termux
   --debian      Configurar solo contenedor Debian glibc
   --copilot     Instalar solo GitHub Copilot CLI y su wrapper
@@ -63,6 +63,7 @@ Opciones:
   --agy         Instalar solo Antigravity CLI
   --ansible     Instalar solo Ansible Automation Engine y wrappers
   --storage     Configurar almacenamiento Android y soporte para OneDrive
+  --clis        Instalar CLIs de desarrollo (Node.js, Railway, Firebase, Vercel) y MCP
   -h, --help    Mostrar este mensaje de ayuda
 
 Ejemplo:
@@ -121,6 +122,9 @@ main() {
         --storage)
             run_step "$SCRIPTS_DIR/07_storage_onedrive.sh" "Almacenamiento Android y OneDrive"
             ;;
+        --clis)
+            run_step "$SCRIPTS_DIR/08_dev_clis.sh" "CLIs de desarrollo (Railway, Firebase, Vercel) y MCP"
+            ;;
         --all)
             log_info "Ejecutando configuración completa..."
             run_step "$SCRIPTS_DIR/01_termux_base.sh" "Paquetes base de Termux"
@@ -130,6 +134,7 @@ main() {
             run_step "$SCRIPTS_DIR/05_antigravity_cli.sh" "Antigravity CLI"
             run_step "$SCRIPTS_DIR/06_ansible.sh" "Ansible Automation Engine (PRoot)"
             run_step "$SCRIPTS_DIR/07_storage_onedrive.sh" "Almacenamiento Android y OneDrive"
+            run_step "$SCRIPTS_DIR/08_dev_clis.sh" "CLIs de desarrollo (Railway, Firebase, Vercel) y MCP"
             ;;
         -h|--help)
             usage
@@ -149,6 +154,10 @@ main() {
     echo -e "  - ${GREEN}agy${RESET}           (Google Antigravity CLI)"
     echo -e "  - ${GREEN}ansible${RESET}       (Ansible CLI sobre Debian PRoot)"
     echo -e "  - ${GREEN}ansible-playbook${RESET} (Ansible Playbook sobre Debian PRoot)"
+    echo -e "  - ${GREEN}railway${RESET}          (Railway CLI para monitoreo de bots)"
+    echo -e "  - ${GREEN}firebase${RESET}         (Firebase Tools CLI)"
+    echo -e "  - ${GREEN}vercel${RESET}           (Vercel CLI)"
+    echo -e "  - ${GREEN}node / npm / npx${RESET} (Entorno Node.js LTS nativo)"
     echo -e "  - ${GREEN}onedrive-sync${RESET}   (Descargar/Sincronizar OneDrive a ~/OneDrive)"
     echo -e "  - ${GREEN}onedrive-push${RESET}   (Subir cambios de ~/OneDrive a la nube)"
     echo -e "  - ${GREEN}~/storage/${RESET}      (Almacenamiento Android: Descargas, Documentos, etc.)"

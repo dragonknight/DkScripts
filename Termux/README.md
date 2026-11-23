@@ -47,7 +47,8 @@ Termux/
     ├── 04_cursor_cli.sh     # Instala Cursor CLI (cursor-agent) + wrapper
     ├── 05_antigravity_cli.sh# Instala Google Antigravity CLI (agy)
     ├── 06_ansible.sh        # Instala Ansible Automation Engine en Debian + wrappers
-    └── 07_storage_onedrive.sh # Acceso a almacenamiento Android y soporte OneDrive con rclone
+    ├── 07_storage_onedrive.sh # Acceso a almacenamiento Android y soporte OneDrive con rclone
+    └── 08_dev_clis.sh       # Instala Node.js, Railway, Firebase, Vercel y configura MCP
 ```
 
 ---
@@ -80,6 +81,9 @@ Puedes ejecutar módulos individuales o todo en conjunto:
 
 # Solo almacenamiento Android y OneDrive
 ./setup.sh --storage
+
+# Solo CLIs de desarrollo y configuración MCP
+./setup.sh --clis
 ```
 
 ---
@@ -143,6 +147,36 @@ La receta habilita el acceso a la memoria de tu dispositivo y añade soporte par
      onedrive-sync Ansible   # Descarga solo una carpeta específica (ej. Ansible)
      onedrive-push Ansible   # Sube cambios locales de ~/OneDrive/Ansible a la nube
      ```
+
+### ⚡ CLIs de Desarrollo e Integraciones MCP
+Herramientas de despliegue, backend y gestión de proyectos integradas para desarrollo asistido por IA:
+
+* **Node.js LTS nativo:**
+  ```bash
+  node --version
+  npm --version
+  npx --version
+  ```
+* **Railway CLI (monitoreo y despliegues):**
+  ```bash
+  railway login
+  railway status
+  ```
+* **Firebase Tools (Firestore y funciones):**
+  ```bash
+  firebase login --no-localhost
+  ```
+* **Vercel CLI:**
+  ```bash
+  vercel login
+  ```
+* **Protocolo MCP (Model Context Protocol) en Cursor:**
+  Plantilla configurada en `~/.cursor/mcp.json` para conectar Cursor Agent con:
+  - **ClickUp:** Gestión de tareas, estados y comentarios (`@hauptsache.net/clickup-mcp`).
+  - **Google Drive:** Acceso a hojas de cálculo y documentos de contexto (`@modelcontextprotocol/server-gdrive`).
+  - **Railway:** Monitoreo y estado de infraestructura (`railway-mcp`).
+  - **Firebase:** Documentos y colecciones Firestore (`@gannonh/firebase-mcp`).
+  - **Vercel:** Despliegues y estado de proyectos (`vercel-mcp`).
 
 ---
 

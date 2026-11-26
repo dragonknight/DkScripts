@@ -70,7 +70,10 @@ fi
 
 mkdir -p "$LOCAL_PATH"
 echo "--> Sincronizando desde $REMOTE_PATH hacia $LOCAL_PATH ..."
-rclone sync "$REMOTE_PATH" "$LOCAL_PATH" --progress "$@"
+rclone sync "$REMOTE_PATH" "$LOCAL_PATH" \
+    --exclude "/Repos/**" \
+    --exclude "/secretos-pruebas/**" \
+    --progress "$@"
 echo "--> Sincronización completada."
 EOF
 chmod +x "$HOME/.local/bin/onedrive-sync"
@@ -105,7 +108,11 @@ if [ ! -d "$LOCAL_PATH" ]; then
 fi
 
 echo "--> Subiendo cambios desde $LOCAL_PATH hacia $REMOTE_PATH ..."
-rclone sync "$LOCAL_PATH" "$REMOTE_PATH" --progress "$@"
+rclone sync "$LOCAL_PATH" "$REMOTE_PATH" \
+    --exclude "/Repos/**" \
+    --exclude "/secretos-pruebas/**" \
+    --exclude "node_modules/**" \
+    --progress "$@"
 echo "--> Subida completada."
 EOF
 chmod +x "$HOME/.local/bin/onedrive-push"
